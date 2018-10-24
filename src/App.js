@@ -10,11 +10,14 @@ export class App extends React.Component {
 
 		this.state = {
 			articles: [],
-			currentArticle: 0
+			currentArticle: 0,
+			sidebarVisible: false,
+			articleVisible: true
 		};
 
 		this.getNews = this.getNews.bind(this);
 		this.updateCurrentArticle = this.updateCurrentArticle.bind(this);
+		this.toggleSidebar = this.toggleSidebar.bind(this);
 	}
 
 	getNews() {
@@ -31,6 +34,24 @@ export class App extends React.Component {
 		});
 	}
 
+	toggleSidebar() {
+		if (this.state.sidebarVisible === false) {
+			this.setState({
+				sidebarVisible: true
+			});
+			setTimeout(() => {
+				this.setState({
+					articleVisible: false
+				})
+			}, 250);
+		} else {
+			this.setState({
+				sidebarVisible: !this.state.sidebarVisible,
+				articleVisible: !this.state.articleVisible
+			});
+		}
+	}
+
 	componentDidMount() {
 		this.getNews();
 	}
@@ -38,10 +59,20 @@ export class App extends React.Component {
 	render() {
 		return (
 			<div className="App">
-				<Header />
+				<Header toggleSidebar={this.toggleSidebar} />
 				<div className="container">
-					<SideBar articles={this.state.articles} toggleArticle={this.updateCurrentArticle} />
-					<Article articles={this.state.articles} currentArticle={this.state.currentArticle} />
+					<SideBar
+						articles={this.state.articles}
+						currentArticle={this.state.currentArticle}
+						toggleSidebar={this.toggleSidebar}
+						toggleArticle={this.updateCurrentArticle}
+						isVisible={this.state.sidebarVisible}
+					/>
+					<Article
+						articles={this.state.articles}
+						currentArticle={this.state.currentArticle}
+						isVisible={this.state.articleVisible}
+					/>
 				</div>
 			</div>
 		);
