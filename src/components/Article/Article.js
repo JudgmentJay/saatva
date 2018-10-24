@@ -14,10 +14,10 @@ export class Article extends React.Component {
 					<h1>{currentArticle.title}</h1>
 					<img alt={currentArticle.title} src={currentArticle.image} />
 					<div className="socialIcons">
-						<i class="fas fa-envelope-square"></i>
-						<i class="fab fa-twitter"></i>
-						<i class="fab fa-facebook-square"></i>
-						<i class="fas fa-rss"></i>
+						<i className="fas fa-envelope-square"></i>
+						<i className="fab fa-twitter"></i>
+						<i className="fab fa-facebook-square"></i>
+						<i className="fas fa-rss"></i>
 					</div>
 					<div dangerouslySetInnerHTML={this.renderCopy(currentArticle.copy)} />
 				</article>

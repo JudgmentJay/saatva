@@ -2,7 +2,7 @@ import React from 'react';
 import { Header } from './components/Header/Header';
 import { SideBar } from './components/SideBar/SideBar';
 import { Article } from './components/Article/Article';
-import { News } from './util/News';
+import data from './util/news.json';
 
 export class App extends React.Component {
 	constructor(props) {
@@ -15,16 +15,19 @@ export class App extends React.Component {
 			articleVisible: true
 		};
 
-		this.getNews = this.getNews.bind(this);
 		this.updateCurrentArticle = this.updateCurrentArticle.bind(this);
 		this.toggleSidebar = this.toggleSidebar.bind(this);
 	}
 
 	getNews() {
-		News.getNews().then(articles => {
-			this.setState({
-				articles: articles
-			});
+		var articles = data.articles.map(article => ({
+			title: article.title,
+			image: article.urlToImage,
+			copy: article.long_description
+		}));
+
+		this.setState({
+			articles: articles
 		});
 	}
 

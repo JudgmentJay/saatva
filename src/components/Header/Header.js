@@ -10,7 +10,7 @@ export class Header extends React.Component {
 			<header>
 				<div className="container">
 					<h1>Saatva News</h1>
-					<i class="fas fa-bars" onClick={this.toggleSidebar.bind(this)}></i>
+					<i className="fas fa-bars" onClick={this.toggleSidebar.bind(this)}></i>
 				</div>
 			</header>
 		);
